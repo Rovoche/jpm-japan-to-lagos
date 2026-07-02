@@ -32,7 +32,7 @@ export function Reveal({
     return () => io.disconnect();
   }, []);
 
-  const Element = Tag as unknown as (props: Record<string, unknown>) => JSX.Element;
+  const Element = Tag as unknown as React.ElementType;
   return (
     <Element
       ref={ref as unknown as never}
