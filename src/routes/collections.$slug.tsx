@@ -41,7 +41,7 @@ export const Route = createFileRoute("/collections/$slug")({
 });
 
 function CollectionPage() {
-  const collection = Route.useLoaderData();
+  const collection = Route.useLoaderData() as (typeof collections)[number];
   const items = products.filter((p) => p.collection === collection.slug);
 
   return (
