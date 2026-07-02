@@ -44,7 +44,7 @@ export const Route = createFileRoute("/product/$slug")({
 });
 
 function ProductPage() {
-  const product = Route.useLoaderData();
+  const product = Route.useLoaderData() as (typeof products)[number];
   const [active, setActive] = useState(0);
   const [qty, setQty] = useState(1);
   const collection = collections.find((c) => c.slug === product.collection);
