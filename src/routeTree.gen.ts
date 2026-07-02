@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as WishlistRouteImport } from './routes/wishlist'
 import { Route as VisitRouteImport } from './routes/visit'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ShopRouteImport } from './routes/shop'
 import { Route as JournalRouteImport } from './routes/journal'
 import { Route as EventsRouteImport } from './routes/events'
@@ -30,6 +31,11 @@ const WishlistRoute = WishlistRouteImport.update({
 const VisitRoute = VisitRouteImport.update({
   id: '/visit',
   path: '/visit',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ShopRoute = ShopRouteImport.update({
@@ -91,6 +97,7 @@ export interface FileRoutesByFullPath {
   '/events': typeof EventsRoute
   '/journal': typeof JournalRoute
   '/shop': typeof ShopRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/visit': typeof VisitRoute
   '/wishlist': typeof WishlistRoute
   '/collections/$slug': typeof CollectionsSlugRoute
@@ -105,6 +112,7 @@ export interface FileRoutesByTo {
   '/events': typeof EventsRoute
   '/journal': typeof JournalRoute
   '/shop': typeof ShopRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/visit': typeof VisitRoute
   '/wishlist': typeof WishlistRoute
   '/collections/$slug': typeof CollectionsSlugRoute
@@ -120,6 +128,7 @@ export interface FileRoutesById {
   '/events': typeof EventsRoute
   '/journal': typeof JournalRoute
   '/shop': typeof ShopRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/visit': typeof VisitRoute
   '/wishlist': typeof WishlistRoute
   '/collections/$slug': typeof CollectionsSlugRoute
@@ -136,6 +145,7 @@ export interface FileRouteTypes {
     | '/events'
     | '/journal'
     | '/shop'
+    | '/sitemap.xml'
     | '/visit'
     | '/wishlist'
     | '/collections/$slug'
@@ -150,6 +160,7 @@ export interface FileRouteTypes {
     | '/events'
     | '/journal'
     | '/shop'
+    | '/sitemap.xml'
     | '/visit'
     | '/wishlist'
     | '/collections/$slug'
@@ -164,6 +175,7 @@ export interface FileRouteTypes {
     | '/events'
     | '/journal'
     | '/shop'
+    | '/sitemap.xml'
     | '/visit'
     | '/wishlist'
     | '/collections/$slug'
@@ -179,6 +191,7 @@ export interface RootRouteChildren {
   EventsRoute: typeof EventsRoute
   JournalRoute: typeof JournalRoute
   ShopRoute: typeof ShopRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   VisitRoute: typeof VisitRoute
   WishlistRoute: typeof WishlistRoute
   CollectionsSlugRoute: typeof CollectionsSlugRoute
@@ -200,6 +213,13 @@ declare module '@tanstack/react-router' {
       path: '/visit'
       fullPath: '/visit'
       preLoaderRoute: typeof VisitRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/shop': {
@@ -283,6 +303,7 @@ const rootRouteChildren: RootRouteChildren = {
   EventsRoute: EventsRoute,
   JournalRoute: JournalRoute,
   ShopRoute: ShopRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   VisitRoute: VisitRoute,
   WishlistRoute: WishlistRoute,
   CollectionsSlugRoute: CollectionsSlugRoute,
