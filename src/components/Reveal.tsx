@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ElementType, type ReactNode } from "react";
 
 export function Reveal({
   children,
@@ -32,7 +32,7 @@ export function Reveal({
     return () => io.disconnect();
   }, []);
 
-  const Element = Tag as unknown as React.ElementType;
+  const Element = Tag as unknown as ElementType;
   return (
     <Element
       ref={ref as unknown as never}
