@@ -16,12 +16,29 @@ export function ProductVisual({
   seed = 0,
   className = "",
   label,
+  src,
 }: {
   tone?: Tone;
   seed?: number;
   className?: string;
   label?: string;
+  /** Real photo URL. When provided, renders the photo instead of the generated SVG placeholder. */
+  src?: string;
 }) {
+  if (src) {
+    return (
+      <div className={`relative overflow-hidden ${className}`}>
+        <img
+          src={src}
+          alt={label ?? ""}
+          loading="lazy"
+          decoding="async"
+          className="h-full w-full object-cover"
+        />
+      </div>
+    );
+  }
+
   const c = palette[tone];
   const shape = seed % 5;
   const rot = (seed * 13) % 24 - 12;
