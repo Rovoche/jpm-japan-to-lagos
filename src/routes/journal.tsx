@@ -37,7 +37,7 @@ function Journal() {
         <Reveal>
           <article className="group grid gap-10 md:grid-cols-[1.15fr_1fr] md:gap-14">
             <div className="aspect-[5/6] overflow-hidden md:aspect-[4/5]">
-              <ProductVisual tone={lead.tone} seed={2} className="h-full w-full transition-transform duration-[1400ms] group-hover:scale-[1.03]" />
+              <ProductVisual tone={lead.tone} seed={2} src={lead.image} label={lead.title} className="h-full w-full transition-transform duration-[1400ms] group-hover:scale-[1.03]" />
             </div>
             <div className="flex flex-col justify-center">
               <p className="eyebrow">Featured · {lead.category}</p>
@@ -59,7 +59,7 @@ function Journal() {
             <Reveal key={j.slug} delay={i * 80}>
               <article className="group">
                 <div className="relative aspect-[4/5] overflow-hidden">
-                  <ProductVisual tone={j.tone} seed={i * 19 + 6} className="h-full w-full transition-transform duration-[1200ms] group-hover:scale-[1.05]" />
+                  <ProductVisual tone={j.tone} seed={i * 19 + 6} src={j.image} label={j.title} className="h-full w-full transition-transform duration-[1200ms] group-hover:scale-[1.05]" />
                 </div>
                 <p className="eyebrow mt-6">{j.category} · {j.minutes} min</p>
                 <h3 className="mt-3 font-serif text-2xl leading-tight">{j.title}</h3>
