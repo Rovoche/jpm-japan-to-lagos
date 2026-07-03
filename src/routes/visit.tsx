@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { MapPin, Clock, Phone, MessageCircle } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
 import { ProductVisual } from "@/components/ProductVisual";
+import { pexels } from "@/lib/images";
 
 export const Route = createFileRoute("/visit")({
   head: () => ({
@@ -33,10 +34,10 @@ function Visit() {
       {/* Photo grid */}
       <section className="container-editorial py-14">
         <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
-          <Reveal><div className="aspect-[3/4] overflow-hidden"><ProductVisual tone="wood" seed={41} className="h-full w-full" /></div></Reveal>
-          <Reveal delay={80}><div className="aspect-[3/4] overflow-hidden md:translate-y-8"><ProductVisual tone="cream" seed={44} className="h-full w-full" /></div></Reveal>
-          <Reveal delay={160}><div className="aspect-[3/4] overflow-hidden"><ProductVisual tone="stone" seed={47} className="h-full w-full" /></div></Reveal>
-          <Reveal delay={240}><div className="aspect-[3/4] overflow-hidden md:translate-y-8"><ProductVisual tone="ink" seed={50} className="h-full w-full" /></div></Reveal>
+          <Reveal><div className="aspect-[3/4] overflow-hidden"><ProductVisual tone="wood" seed={41} src={pexels.teaCeremony} label="Tea counter inside the store" className="h-full w-full" /></div></Reveal>
+          <Reveal delay={80}><div className="aspect-[3/4] overflow-hidden md:translate-y-8"><ProductVisual tone="cream" seed={44} src={pexels.sushi} label="Tableware display" className="h-full w-full" /></div></Reveal>
+          <Reveal delay={160}><div className="aspect-[3/4] overflow-hidden"><ProductVisual tone="stone" seed={47} src={pexels.vintageCups} label="Cup collection on shelves" className="h-full w-full" /></div></Reveal>
+          <Reveal delay={240}><div className="aspect-[3/4] overflow-hidden md:translate-y-8"><ProductVisual tone="ink" seed={50} src={pexels.incense} label="Incense in a ceramic vase" className="h-full w-full" /></div></Reveal>
         </div>
       </section>
 
