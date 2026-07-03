@@ -5,6 +5,7 @@ import { SectionHeading } from "@/components/SectionHeading";
 import { ProductVisual } from "@/components/ProductVisual";
 import { ProductCard } from "@/components/ProductCard";
 import { products, collections, journal } from "@/lib/catalog";
+import { pexels } from "@/lib/images";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -63,7 +64,7 @@ function Home() {
           <Reveal delay={150}>
             <div className="relative">
               <div className="relative aspect-[4/5] w-full overflow-hidden">
-                <ProductVisual tone="wood" seed={7} className="h-full w-full" />
+                <ProductVisual tone="wood" seed={7} src={pexels.torii} label="Torii gate in autumn" className="h-full w-full" />
                 <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between text-primary-foreground mix-blend-difference">
                   <div>
                     <p className="text-[10px] tracking-[0.32em] uppercase opacity-80">Spring Edit · 春</p>
@@ -72,7 +73,7 @@ function Home() {
                 </div>
               </div>
               <div className="absolute -bottom-6 -left-6 hidden aspect-[3/4] w-40 overflow-hidden border-8 border-background md:block">
-                <ProductVisual tone="cream" seed={2} className="h-full w-full" />
+                <ProductVisual tone="cream" seed={2} src={pexels.teaCeremony} label="Traditional tea ceremony setting" className="h-full w-full" />
               </div>
             </div>
           </Reveal>
@@ -113,6 +114,8 @@ function Home() {
                 <ProductVisual
                   tone={(["cream", "paper", "stone", "wood", "ink", "cream"] as const)[i]}
                   seed={i * 11 + 3}
+                  src={c.image}
+                  label={c.name}
                   className="h-full w-full transition-transform duration-[1200ms] ease-[cubic-bezier(0.2,0.8,0.2,1)] group-hover:scale-[1.05]"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-sumi/60 via-transparent to-transparent" />
@@ -208,10 +211,10 @@ function Home() {
           </Reveal>
           <Reveal delay={150}>
             <div className="grid grid-cols-2 gap-3">
-              <div className="aspect-[3/4] overflow-hidden"><ProductVisual tone="ink" seed={9} className="h-full w-full" /></div>
-              <div className="aspect-[3/4] translate-y-10 overflow-hidden"><ProductVisual tone="wood" seed={12} className="h-full w-full" /></div>
-              <div className="aspect-[3/4] -translate-y-6 overflow-hidden"><ProductVisual tone="stone" seed={15} className="h-full w-full" /></div>
-              <div className="aspect-[3/4] overflow-hidden"><ProductVisual tone="cream" seed={18} className="h-full w-full" /></div>
+              <div className="aspect-[3/4] overflow-hidden"><ProductVisual tone="ink" seed={9} src={pexels.ramen} label="Bowl of Japanese ramen" className="h-full w-full" /></div>
+              <div className="aspect-[3/4] translate-y-10 overflow-hidden"><ProductVisual tone="wood" seed={12} src={pexels.torii} label="Torii gate in autumn" className="h-full w-full" /></div>
+              <div className="aspect-[3/4] -translate-y-6 overflow-hidden"><ProductVisual tone="stone" seed={15} src={pexels.teaCeremony} label="Traditional tea ceremony setting" className="h-full w-full" /></div>
+              <div className="aspect-[3/4] overflow-hidden"><ProductVisual tone="cream" seed={18} src={pexels.mochi} label="Assorted mochi desserts" className="h-full w-full" /></div>
             </div>
           </Reveal>
         </div>
@@ -238,7 +241,7 @@ function Home() {
         <div className="container-editorial grid gap-10 py-24 md:grid-cols-[0.9fr_1.1fr] md:gap-20 md:py-32">
           <Reveal>
             <div className="relative aspect-[4/5] overflow-hidden">
-              <ProductVisual tone="wood" seed={22} className="h-full w-full" />
+              <ProductVisual tone="wood" seed={22} src={pexels.knifeAsparagus} label="Preparing food in the store kitchen" className="h-full w-full" />
             </div>
           </Reveal>
           <Reveal delay={120}>
@@ -290,7 +293,7 @@ function Home() {
             <Reveal key={j.slug} delay={i * 90}>
               <article className="group">
                 <div className="relative aspect-[4/5] overflow-hidden">
-                  <ProductVisual tone={j.tone} seed={i * 23 + 11} className="h-full w-full transition-transform duration-[1200ms] group-hover:scale-105" />
+                  <ProductVisual tone={j.tone} seed={i * 23 + 11} src={j.image} label={j.title} className="h-full w-full transition-transform duration-[1200ms] group-hover:scale-105" />
                 </div>
                 <p className="eyebrow mt-6">{j.category} · {j.minutes} min</p>
                 <h3 className="mt-3 font-serif text-2xl leading-tight">{j.title}</h3>
@@ -321,6 +324,7 @@ function Home() {
                   <ProductVisual
                     tone={(["cream", "wood", "stone", "paper", "ink", "cream"] as const)[i]}
                     seed={i * 29 + 4}
+                    src={[pexels.matchaScoop, pexels.mochi, pexels.teaLeaves, pexels.rockSalt, pexels.sauces, pexels.bathEssentials][i]}
                     className="h-full w-full transition-transform duration-[1200ms] group-hover:scale-110"
                   />
                 </div>
