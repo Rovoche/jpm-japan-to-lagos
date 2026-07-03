@@ -1,6 +1,8 @@
 // Mock catalog for JP MAN WORLD concept site.
 // All content is fictional and illustrative.
 
+import { pexels } from "./images";
+
 export type Product = {
   slug: string;
   name: string;
@@ -11,7 +13,7 @@ export type Product = {
   maker: string;
   story: string;
   specs: { label: string; value: string }[];
-  images: { alt: string; hue: number; tone: "cream" | "paper" | "stone" | "wood" | "ink" }[];
+  images: { alt: string; hue: number; tone: "cream" | "paper" | "stone" | "wood" | "ink"; src?: string }[];
   tags: string[];
   isNew?: boolean;
   isLimited?: boolean;
@@ -32,14 +34,15 @@ export const collections: {
   jp: string;
   tagline: string;
   description: string;
+  image?: string;
 }[] = [
-  { slug: "kitchen-table", name: "Kitchen & Table", jp: "台所", tagline: "Tools for the daily meal.", description: "Cast iron, cedar, hand-thrown porcelain. Everyday objects made to last a lifetime." },
-  { slug: "snack-pantry", name: "Snack & Pantry", jp: "食品庫", tagline: "The Japanese pantry, delivered.", description: "Regional snacks, seasoning, and staples sourced from small Japanese producers." },
-  { slug: "skin-ritual", name: "Skin & Ritual", jp: "肌の儀式", tagline: "The quiet practice of care.", description: "Cleansers, oils, and bath goods drawn from centuries of Japanese wellness ritual." },
-  { slug: "home-living", name: "Home & Living", jp: "住まい", tagline: "Rooms that breathe.", description: "Textiles, incense, and light — objects that make a space feel calm and considered." },
-  { slug: "tea-time", name: "Tea Time", jp: "お茶の時間", tagline: "A pause, twice a day.", description: "Sencha, matcha, hojicha and the vessels made to hold them." },
-  { slug: "gifting", name: "Gifting", jp: "贈り物", tagline: "Wrapped with intention.", description: "Curated sets in furoshiki cloth. The Japanese art of giving." },
-  { slug: "seasonal", name: "Seasonal Picks", jp: "季節", tagline: "This season, from Japan.", description: "A rotating edit that follows the Japanese calendar of small seasons." },
+  { slug: "kitchen-table", name: "Kitchen & Table", jp: "台所", tagline: "Tools for the daily meal.", description: "Cast iron, cedar, hand-thrown porcelain. Everyday objects made to last a lifetime.", image: pexels.sushi },
+  { slug: "snack-pantry", name: "Snack & Pantry", jp: "食品庫", tagline: "The Japanese pantry, delivered.", description: "Regional snacks, seasoning, and staples sourced from small Japanese producers.", image: pexels.bowls },
+  { slug: "skin-ritual", name: "Skin & Ritual", jp: "肌の儀式", tagline: "The quiet practice of care.", description: "Cleansers, oils, and bath goods drawn from centuries of Japanese wellness ritual.", image: pexels.bodyBrush },
+  { slug: "home-living", name: "Home & Living", jp: "住まい", tagline: "Rooms that breathe.", description: "Textiles, incense, and light — objects that make a space feel calm and considered.", image: pexels.incense },
+  { slug: "tea-time", name: "Tea Time", jp: "お茶の時間", tagline: "A pause, twice a day.", description: "Sencha, matcha, hojicha and the vessels made to hold them.", image: pexels.vintageCups },
+  { slug: "gifting", name: "Gifting", jp: "贈り物", tagline: "Wrapped with intention.", description: "Curated sets in furoshiki cloth. The Japanese art of giving.", image: pexels.bathEssentials },
+  { slug: "seasonal", name: "Seasonal Picks", jp: "季節", tagline: "This season, from Japan.", description: "A rotating edit that follows the Japanese calendar of small seasons.", image: pexels.bowls },
 ];
 
 const p = (
@@ -89,6 +92,37 @@ export const products: Product[] = [
   p("sakura-tea", "Sakura Blossom Tea", "桜茶", 3800, "seasonal", "Nara", "Yamamotoyama", "Salt-pickled cherry blossoms that bloom again in the cup. A spring ritual.", [["Weight", "40g"]], ["paper", "cream"], ["seasonal"]),
 ];
 
+// Real photography assigned to specific products, keyed by slug.
+// Only the primary (first) image per product is swapped — additional
+// angles stay as generated placeholders until more photos are supplied.
+const productPhotoBySlug: Partial<Record<string, string>> = {
+  "nambu-tetsubin": pexels.teapot,
+  "hinoki-cutting-board": pexels.knifeAsparagus,
+  "arita-tea-cup": pexels.vintageCups,
+  "uji-matcha-ceremonial": pexels.matchaScoop,
+  "hojicha-loose": pexels.teaLeaves,
+  "kaya-shampoo-bar": pexels.bodyBrush,
+  "yuzu-bath-salt": pexels.bathEssentials,
+  "hinoki-incense": pexels.incense,
+  "shiro-shoyu": pexels.sauces,
+  "okinawan-salt": pexels.rockSalt,
+  "mochi-box": pexels.mochi,
+  // Approximate matches — no exact photo supplied for these, closest
+  // available substitute used. Flag these for real product photography
+  // first, since the visual match here is loose.
+  "ochoko-set": pexels.vintageCups, // sake cups — reusing the cup-shelf photo
+  "furoshiki-set": pexels.bathEssentials, // cloth wrap — reusing folded-fabric photo
+  "sakura-tea": pexels.teaCeremony, // seasonal tea — reusing ceremony photo
+  // No reasonable stock substitute exists for these — stays as generated
+  // placeholder until real photography is available:
+  // "indigo-noren" (dyed textile), "kadomatsu-mini" (New Year arrangement)
+};
+
+for (const product of products) {
+  const src = productPhotoBySlug[product.slug];
+  if (src && product.images[0]) product.images[0].src = src;
+}
+
 export const journal: {
   slug: string;
   category: string;
@@ -98,13 +132,14 @@ export const journal: {
   minutes: number;
   date: string;
   tone: "cream" | "paper" | "stone" | "wood" | "ink";
+  image?: string;
 }[] = [
-  { slug: "the-quiet-ritual-of-morning-tea", category: "Ritual", title: "The Quiet Ritual of Morning Tea", excerpt: "Why the first pour of the day matters more than the last.", author: "JP MAN Editorial", minutes: 6, date: "March 2026", tone: "cream" },
-  { slug: "hinoki-a-scent-of-place", category: "Home", title: "Hinoki: A Scent of Place", excerpt: "The Kiso cypress and the four-hundred-year-old bath it built.", author: "Kenji Adeyemi", minutes: 8, date: "February 2026", tone: "wood" },
-  { slug: "wagashi-in-lagos", category: "Food", title: "Wagashi in Lagos", excerpt: "How our pastry chef translates the seasons of Kyoto to the seasons of Lagos.", author: "Aiko Balogun", minutes: 5, date: "February 2026", tone: "paper" },
-  { slug: "the-art-of-furoshiki", category: "Guide", title: "The Art of Furoshiki", excerpt: "Four folds to wrap any object as a gift.", author: "JP MAN Editorial", minutes: 4, date: "January 2026", tone: "ink" },
-  { slug: "small-seasons", category: "Culture", title: "Seventy-Two Small Seasons", excerpt: "The Japanese calendar of five-day seasons, and what to notice this week.", author: "JP MAN Editorial", minutes: 7, date: "January 2026", tone: "stone" },
-  { slug: "the-onsen-at-home", category: "Ritual", title: "The Onsen at Home", excerpt: "A small guide to the winter bath — yuzu, salt, silence.", author: "Aiko Balogun", minutes: 5, date: "December 2025", tone: "cream" },
+  { slug: "the-quiet-ritual-of-morning-tea", category: "Ritual", title: "The Quiet Ritual of Morning Tea", excerpt: "Why the first pour of the day matters more than the last.", author: "JP MAN Editorial", minutes: 6, date: "March 2026", tone: "cream", image: pexels.teaCeremony },
+  { slug: "hinoki-a-scent-of-place", category: "Home", title: "Hinoki: A Scent of Place", excerpt: "The Kiso cypress and the four-hundred-year-old bath it built.", author: "Kenji Adeyemi", minutes: 8, date: "February 2026", tone: "wood", image: pexels.knifeAsparagus },
+  { slug: "wagashi-in-lagos", category: "Food", title: "Wagashi in Lagos", excerpt: "How our pastry chef translates the seasons of Kyoto to the seasons of Lagos.", author: "Aiko Balogun", minutes: 5, date: "February 2026", tone: "paper", image: pexels.mochi },
+  { slug: "the-art-of-furoshiki", category: "Guide", title: "The Art of Furoshiki", excerpt: "Four folds to wrap any object as a gift.", author: "JP MAN Editorial", minutes: 4, date: "January 2026", tone: "ink", image: pexels.bathEssentials },
+  { slug: "small-seasons", category: "Culture", title: "Seventy-Two Small Seasons", excerpt: "The Japanese calendar of five-day seasons, and what to notice this week.", author: "JP MAN Editorial", minutes: 7, date: "January 2026", tone: "stone", image: pexels.torii },
+  { slug: "the-onsen-at-home", category: "Ritual", title: "The Onsen at Home", excerpt: "A small guide to the winter bath — yuzu, salt, silence.", author: "Aiko Balogun", minutes: 5, date: "December 2025", tone: "cream", image: pexels.bodyBrush },
 ];
 
 export const events: {
@@ -116,9 +151,10 @@ export const events: {
   seats: string;
   tone: "cream" | "paper" | "stone" | "wood" | "ink";
   description: string;
+  image?: string;
 }[] = [
-  { slug: "matcha-tasting-april", title: "Uji Matcha Tasting", date: "Sat, 18 April 2026", time: "3:00 – 4:30 PM", location: "JP MAN Store, Ikoyi", seats: "12 seats", tone: "wood", description: "A guided tasting of four first-flush matcha grades, poured by our tea sommelier." },
-  { slug: "ramen-night", title: "Ramen Night: Sapporo Miso", date: "Fri, 24 April 2026", time: "7:00 PM", location: "JP MAN Store, Ikoyi", seats: "20 seats", tone: "ink", description: "Chef Aiko cooks a Hokkaido miso ramen, one bowl at a time. Sake pairing included." },
-  { slug: "furoshiki-workshop", title: "Furoshiki Wrapping Workshop", date: "Sun, 3 May 2026", time: "11:00 AM", location: "JP MAN Store, Ikoyi", seats: "15 seats", tone: "paper", description: "Learn eight folds. Wrap a bottle, a box, a book. Cloth included." },
-  { slug: "hanami-lagos", title: "Hanami in Lagos", date: "Sat, 16 May 2026", time: "5:00 PM", location: "Freedom Park", seats: "Open", tone: "cream", description: "A picnic under the flame trees. Bento, sakura tea, and a small koto performance." },
+  { slug: "matcha-tasting-april", title: "Uji Matcha Tasting", date: "Sat, 18 April 2026", time: "3:00 – 4:30 PM", location: "JP MAN Store, Ikoyi", seats: "12 seats", tone: "wood", description: "A guided tasting of four first-flush matcha grades, poured by our tea sommelier.", image: pexels.matchaScoop },
+  { slug: "ramen-night", title: "Ramen Night: Sapporo Miso", date: "Fri, 24 April 2026", time: "7:00 PM", location: "JP MAN Store, Ikoyi", seats: "20 seats", tone: "ink", description: "Chef Aiko cooks a Hokkaido miso ramen, one bowl at a time. Sake pairing included.", image: pexels.ramen },
+  { slug: "furoshiki-workshop", title: "Furoshiki Wrapping Workshop", date: "Sun, 3 May 2026", time: "11:00 AM", location: "JP MAN Store, Ikoyi", seats: "15 seats", tone: "paper", description: "Learn eight folds. Wrap a bottle, a box, a book. Cloth included.", image: pexels.bathEssentials },
+  { slug: "hanami-lagos", title: "Hanami in Lagos", date: "Sat, 16 May 2026", time: "5:00 PM", location: "Freedom Park", seats: "Open", tone: "cream", description: "A picnic under the flame trees. Bento, sakura tea, and a small koto performance.", image: pexels.bowls },
 ];
