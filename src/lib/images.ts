@@ -1,0 +1,18 @@
+export const pexels = {
+  mochi: "https://images.pexels.com/photos/35517025/pexels-photo-35517025.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  bowls: "https://images.pexels.com/photos/17424334/pexels-photo-17424334.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  teaCeremony: "https://images.pexels.com/photos/35680945/pexels-photo-35680945.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  sushi: "https://images.pexels.com/photos/36907238/pexels-photo-36907238.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  teapot: "https://images.pexels.com/photos/9659756/pexels-photo-9659756.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  knifeAsparagus: "https://images.pexels.com/photos/4397788/pexels-photo-4397788.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  vintageCups: "https://images.pexels.com/photos/36949726/pexels-photo-36949726.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  matchaScoop: "https://images.pexels.com/photos/8474143/pexels-photo-8474143.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  teaLeaves: "https://images.pexels.com/photos/8329986/pexels-photo-8329986.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  bodyBrush: "https://images.pexels.com/photos/7262780/pexels-photo-7262780.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  bathEssentials: "https://images.pexels.com/photos/11635434/pexels-photo-11635434.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  torii: "https://images.pexels.com/photos/31301160/pexels-photo-31301160.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  incense: "https://images.pexels.com/photos/6954559/pexels-photo-6954559.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  ramen: "https://images.pexels.com/photos/33493350/pexels-photo-33493350.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  sauces: "https://images.pexels.com/photos/29021368/pexels-photo-29021368.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  rockSalt: "https://images.pexels.com/photos/7599056/pexels-photo-7599056.jpeg?auto=compress&cs=tinysrgb&w=1600",
+} as const;
