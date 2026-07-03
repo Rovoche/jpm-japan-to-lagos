@@ -13,7 +13,7 @@ export function ProductCard({ product, index = 0 }: { product: Product; index?: 
     >
       <div className="relative aspect-[4/5] overflow-hidden bg-muted">
         <div className="absolute inset-0 transition-transform duration-[1200ms] ease-[cubic-bezier(0.2,0.8,0.2,1)] group-hover:scale-[1.04]">
-          <ProductVisual tone={product.images[0].tone} seed={index + product.slug.length} className="h-full w-full" />
+          <ProductVisual tone={product.images[0].tone} seed={index + product.slug.length} src={product.images[0].src} label={product.images[0].alt} className="h-full w-full" />
         </div>
 
         <div className="absolute left-4 top-4 flex gap-2">
