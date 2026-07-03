@@ -63,7 +63,7 @@ function Cart() {
               <Reveal key={l.slug} delay={i * 60}>
                 <div className="grid grid-cols-[100px_1fr_auto] items-start gap-6 py-6 md:grid-cols-[140px_1fr_auto_auto] md:gap-8">
                   <div className="aspect-[4/5] overflow-hidden bg-muted">
-                    <ProductVisual tone={l.product.images[0].tone} seed={l.slug.length} className="h-full w-full" />
+                    <ProductVisual tone={l.product.images[0].tone} seed={l.slug.length} src={l.product.images[0].src} label={l.product.images[0].alt} className="h-full w-full" />
                   </div>
                   <div className="min-w-0">
                     <p className="eyebrow">{l.product.jp}</p>
