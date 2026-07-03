@@ -37,7 +37,7 @@ function Events() {
             <Reveal key={e.slug} delay={i * 70}>
               <article className="group grid gap-6 border-b border-border pb-6 md:grid-cols-[240px_1fr_auto] md:items-center md:gap-10">
                 <div className="relative aspect-[5/4] w-full overflow-hidden md:aspect-[5/4]">
-                  <ProductVisual tone={e.tone} seed={i * 23 + 7} className="h-full w-full transition-transform duration-[1200ms] group-hover:scale-105" />
+                  <ProductVisual tone={e.tone} seed={i * 23 + 7} src={e.image} label={e.title} className="h-full w-full transition-transform duration-[1200ms] group-hover:scale-105" />
                 </div>
                 <div>
                   <p className="eyebrow">{e.date}</p>
