@@ -63,7 +63,7 @@ function ProductPage() {
         <div>
           <Reveal>
             <div className="relative aspect-[4/5] overflow-hidden bg-muted">
-              <ProductVisual tone={product.images[active].tone} seed={active * 11 + product.slug.length} className="h-full w-full" />
+              <ProductVisual tone={product.images[active].tone} seed={active * 11 + product.slug.length} src={product.images[active].src} label={product.images[active].alt} className="h-full w-full" />
               {product.isLimited && (
                 <span className="absolute left-5 top-5 bg-accent px-3 py-1 text-[10px] tracking-[0.28em] uppercase text-accent-foreground">Limited</span>
               )}
@@ -79,7 +79,7 @@ function ProductPage() {
                   active === i ? "border-foreground" : "border-transparent opacity-70 hover:opacity-100"
                 }`}
               >
-                <ProductVisual tone={img.tone} seed={i * 7 + product.slug.length} className="h-full w-full" />
+                <ProductVisual tone={img.tone} seed={i * 7 + product.slug.length} src={img.src} label={img.alt} className="h-full w-full" />
               </button>
             ))}
           </div>
