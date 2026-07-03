@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Reveal } from "@/components/Reveal";
 import { ProductVisual } from "@/components/ProductVisual";
+import { pexels } from "@/lib/images";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -32,7 +33,7 @@ function About() {
       <section className="container-editorial grid gap-10 py-20 md:grid-cols-[1fr_1.15fr] md:gap-20">
         <Reveal>
           <div className="aspect-[4/5] overflow-hidden">
-            <ProductVisual tone="wood" seed={61} className="h-full w-full" />
+            <ProductVisual tone="wood" seed={61} src={pexels.torii} label="Torii gate in autumn" className="h-full w-full" />
           </div>
         </Reveal>
         <Reveal delay={120}>
